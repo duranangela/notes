@@ -1,13 +1,13 @@
 const newNote = () => {
-  let tag = $('#tag').val();
-  let note = $('#note').val();
+  let tag = $('#choose-tag').val();
+  let note = $('#note-text').val();
 
   fetch("https://ba2w3lgnm5.execute-api.us-west-1.amazonaws.com/prod/todos", {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({"note": `${note}`, "tag": `${tag}`})
   }).then(response => getNotes())
-  .then(notes => $('#note').val(''));
+  .then(notes => $('#note-text').val(''));
 }
 
 const getNotes = () => {
@@ -20,6 +20,8 @@ const getNotes = () => {
 
 const listNotes = (notes) => {
   notes = notes["Items"].sort((a,b) => (b.created_at) - (a.created_at));
+  notes = filterNotes(notes);
+
   notes.forEach(note => {
     $('.note-list').append(`
       <div class='notes'>
@@ -32,6 +34,18 @@ const listNotes = (notes) => {
   });
 };
 
+const filterNotes = (notes) => {
+  if ($('#filter').val() === 'All') {
+    return notes;
+  } else {
+    notes = notes.map(note => {
+      if (note.tag === $('#filter').val()) {
+        return note;
+      };
+    });
+    return notes.filter((obj) => obj);
+  };
+};
 
 
 getNotes()

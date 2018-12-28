@@ -2,27 +2,31 @@
   <link rel="stylesheet" type="text/css" href="application.css">
 </head>
 <body>
-  <h2>Create New Note</h2>
+  <h1>Take Note!</h1>
+  <h2>Create A New Note</h2>
   <div class='new-note'>
-    <div>
+    <div id='tag'>
       Tag
-      <select id="tag">
-        <option value="Business">Business</option>
+      <select id="choose-tag">
+        <option value="Work">Work</option>
         <option value="Personal">Personal</option>
         <option value="Hobby">Hobby</option>
       </select><br>
     </div>
-    <div>Note<textarea id='note'></textarea></div><br>
-    <div><button type='button' id='submit' onClick='newNote()'>Submit</button></div>
+    <div id="note">Note    <textarea id='note-text'></textarea></div><br>
+    <div id="button"><button type='button' id='submit' onClick='newNote()'>Submit</button></div>
   </div>
-
+  <br>
   <h2>Note List</h2>
-  <select id="filter">
-    <option value="All">All</option>
-    <option value="Business">Business</option>
-    <option value="Personal">Personal</option>
-    <option value="Hobby">Hobby</option>
-  </select>
+  <div id="filter-section">
+    Filter by:
+    <select id="filter" onchange="getNotes()">
+      <option value="All">All</option>
+      <option value="Work">Work</option>
+      <option value="Personal">Personal</option>
+      <option value="Hobby">Hobby</option>
+    </select>
+  </div>
   <div class="note-list"></div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
