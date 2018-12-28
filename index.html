@@ -1,0 +1,30 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="application.css">
+</head>
+<body>
+  <h2>Create New Todo</h2>
+  <div class='new-todo'>
+    <div>
+      Tag
+      <select id="tag">
+        <option value="Business">Business</option>
+        <option value="Personal">Personal</option>
+        <option value="Hobby">Hobby</option>
+      </select><br>
+    </div>
+    <div>Note<textarea id='note'></textarea></div><br>
+    <div><button type='button' id='submit' onClick='newTodo()'>Submit</button></div>
+  </div>
+
+  <h2>Todo List</h2>
+  <select id="filter">
+    <option value="All">All</option>
+    <option value="Business">Business</option>
+    <option value="Personal">Personal</option>
+    <option value="Hobby">Hobby</option>
+  </select>
+  <div class="todo-list"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="index.js"></script>
+</body>
