@@ -20,6 +20,7 @@ const getNotes = () => {
 
 const listNotes = (notes) => {
   notes = notes["Items"].sort((a,b) => (b.created_at) - (a.created_at));
+  getDates(notes);
   notes = filterNotes(notes);
 
   notes.forEach(note => {
@@ -33,6 +34,13 @@ const listNotes = (notes) => {
       `);
   });
 };
+
+const getDates = (notes) => {
+  dates = notes.map(note => {
+    return(new Date(note.created_at * 1000).toLocaleDateString());
+  });
+  dates = [...new Set(dates)];
+}
 
 const filterNotes = (notes) => {
   if ($('#filter').val() === 'All') {
