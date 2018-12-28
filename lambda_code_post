@@ -1,0 +1,27 @@
+console.log('function starts')
+
+const AWS = require('aws-sdk')
+const docClient = new AWS.DynamoDB.DocumentClient()
+
+exports.handler = function(event, context, callback){
+    console.log('processing event: ' + JSON.stringify(event, null, 2))
+
+    let params =  {
+        Item: {
+            note: event.note,
+            tag: event.tag,
+            created_at: Math.floor(new Date().getTime()/1000.0)
+        },
+
+        TableName: 'Todos'
+    };
+
+    docClient.put(params, function(err,data){
+        if(err) {
+            callback(err, null)
+        }else{
+            callback(null, data)
+        }
+    });
+
+}
